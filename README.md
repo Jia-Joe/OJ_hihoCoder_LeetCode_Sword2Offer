@@ -1,2 +1,4 @@
-My second repository !
-Different colors for different programming languages.
+LeetCode OJ
+Binary search---1
+Linked List---2
+Vector erase---3
