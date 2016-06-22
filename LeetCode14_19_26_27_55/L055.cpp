@@ -1,3 +1,24 @@
+//O(n)
+class Solution {
+public:
+    bool canJump(vector<int>& nums) {
+        int nz=nums.size();
+        int maxs=nums[0];
+        for(int i=1;i<=maxs;i++){
+            if(i+nums[i]>maxs)
+                maxs=i+nums[i];
+            if(maxs>=nz-1)
+                break;
+        }
+        
+        if(maxs>=nz-1)
+            return true;        
+        else 
+            return false;
+    }
+};
+
+//O(n^2)
 class Solution {
 public:
     bool canJump(vector<int>& nums) {
