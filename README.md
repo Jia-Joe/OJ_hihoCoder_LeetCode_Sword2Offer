@@ -7,3 +7,4 @@ Greedy---55
 KMP---28
 
 Waiting---5,4
+Catalan Comb--95
