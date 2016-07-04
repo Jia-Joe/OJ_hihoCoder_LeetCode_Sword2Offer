@@ -1,23 +1,13 @@
-class Solution
-{
+class Solution {
 public:
-    void push(int node) {
-        stack1.push(node);
-    }
-
-    int pop() {
-        if(stack2.empty()){
-            while(!stack1.empty()){
-                stack2.push(stack1.top());
-                stack1.pop();
-            }
+    int  NumberOf1(int n) {
+        int ret = 0;
+        if (n < 0) ret++;
+        n &= 0x7FFFFFFF;
+        while (n){
+            ret += n & 0x00000001;
+            n >>= 1;
         }
-        int ret=stack2.top();
-        stack2.pop();
         return ret;
     }
-
-private:
-    stack<int> stack1;
-    stack<int> stack2;
 };
