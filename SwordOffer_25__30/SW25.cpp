@@ -1,19 +1,38 @@
-bool ok(vector<vector<int> > array, int target, int xp, int xq, int yp, int yq){
-	if (xp > xq) return false;
-	int mx = (xp + xq) >> 1, ip = yp, iq = yq, my = (ip + iq) >> 1;
-	while (ip <= iq){
-		my = (ip + iq) >> 1;
-		if (target == array[my][mx]) return true;
-		else if (target > array[my][mx])
-			ip = my + 1;
-		else
-			iq = my - 1;
-	}
-	return ok(array, target, xp, mx - 1, my, yq) || ok(array, target, mx + 1, xq, yp, my);
-}
-bool Find(vector<vector<int> > array, int target) {
-	int ry = array.size();
-	if (ry == 0) return false;
-	int rx = array[0].size();
-	return ok(array, target, 0, rx-1, 0, ry-1);
-}
+/*
+struct RandomListNode {
+    int label;
+    struct RandomListNode *next, *random;
+    RandomListNode(int x) :
+            label(x), next(NULL), random(NULL) {
+    }
+};
+*/
+class Solution {
+public:
+    RandomListNode* Clone(RandomListNode* pHead)
+    {
+        if (pHead == NULL) return NULL;
+        unordered_map<RandomListNode*, int> mp;
+        RandomListNode *hd = pHead;
+        int n = 0;
+        while (hd){
+            mp[hd] = n++;
+            hd = hd->next;
+        }
+        RandomListNode** cp = new RandomListNode*[n];
+        cp[0] = new RandomListNode(pHead->label);
+        hd = pHead->next;
+        for (int i = 1; i < n; i++){
+            cp[i] = new RandomListNode(hd->label);
+            cp[i - 1]->next=cp[i];
+            hd = hd->next;
+        }
+        hd = pHead;
+        for (int i = 0; i < n; i++){
+            if (hd->random)
+            	cp[i]->random = cp[mp[hd->random]];
+            hd = hd->next;
+        }	
+        return cp[0];
+    }
+};
