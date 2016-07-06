@@ -24,3 +24,32 @@ public:
         return ret;
     }
 };
+
+class Solution {
+public:
+    void swap(string &s, int a, int b){
+        char t = s[a]; s[a] = s[b]; s[b] = t;
+    }
+    void perm(vector<string> &v, string &s, int p, int q){
+        if (p >= q) {
+            v.push_back(s);
+            return;
+        }
+        unordered_set<char> us;
+        for (int i = p; i <= q; ++i){
+            if (us.find(s[i]) == us.end()){
+                us.insert(s[i]);
+                swap(s, i, p);
+                perm(v, s, p + 1, q);
+                swap(s, i, p);
+            }
+        }
+    }
+    vector<string> Permutation(string str) {
+        vector<string> ret;
+        if (str.size() == 0) return ret;
+        perm(ret, str, 0, str.size() - 1);
+        sort(ret.begin(), ret.end());
+        return ret;
+    }
+};
