@@ -1,3 +1,4 @@
+//priority_queue<int, vector<int>, greater<int> > v;
 class Solution {
 public:
     int GetUglyNumber_Solution(int index) {
