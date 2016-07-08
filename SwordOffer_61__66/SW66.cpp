@@ -1,18 +1,37 @@
 class Solution {
 public:
-    int minNumberInRotateArray(vector<int> rotateArray) {
-        int sz = rotateArray.size();
-        if (sz == 0)return 0;
-        if (sz == 1) return rotateArray[0];
-        int p = 0, q = sz - 1, m = 0, v = rotateArray[0];
-        while (p <= q){
-            m = (p + q) >> 1;
-            if (rotateArray[m] >= v)
-                p = m + 1;
-            else
-                q = m - 1;
+    bool okblock(int rows, int cols,int k){
+        int cp = 0;
+        while (rows){
+            cp += rows % 10;
+            rows /= 10;
         }
-        if (m == 0||m==sz-1) return min(rotateArray[m], rotateArray[m - 1]);
-        return min(min(rotateArray[m-1], rotateArray[m]),rotateArray[m+1]);
+        while (cols){
+            cp += cols % 10;
+            cols /= 10;
+        }
+        return cp <= k;
+    }
+    int movingCount(int threshold, int rows, int cols)
+    {
+        if (rows < 1 || cols < 1 || threshold < 1) return 0;
+        int ans = 0, dx[4] = {0,1,0,-1}, dy[4] = {-1,0,1,0};
+        stack<pair<int, int>> st;
+        vector<vector<bool> > vb(rows, vector<bool>(cols,false));
+        st.push(make_pair(0, 0));
+        vb[0][0] = true;
+        while (!st.empty()){
+            int y = st.top().first, x = st.top().second;
+            st.pop();
+            ans++;
+            for (int i = 0; i < 4; ++i){
+                int yi = y + dy[i], xi = x + dx[i];
+                if (yi>-1 && yi<rows&&xi>-1&&xi<cols&&!vb[yi][xi]&&okblock(yi,xi,threshold)){
+                    vb[yi][xi] = true;
+                    st.push(make_pair(yi, xi));
+                }
+            }		
+        }
+        return ans;
     }
 };
