@@ -4,7 +4,7 @@ public:
         if (fi > q) return false;
         for (; fi <= q; fi++){
             if (s[fi] == ' ') continue;
-            if (s[fi] == '.') dot == true;
+            if (s[fi] == '.') dot = true;
             if (!(s[fi] >= '0'&&s[fi] <= '9') && s[fi] != '+'&&s[fi] != '-'&&s[fi] != '.') {
                 return false;
             }
