@@ -1,10 +1,10 @@
 class Solution {
 public:
-    void mergesort(vector<int> &v, int p, int q, int &t){
+    void mergesort(vector<int> &v, int p, int q, long long &t){
         if (p == q) return;
-        int m = (p + q) >> 1,i,j;
-        mergesort(v, p, m,t);
-        mergesort(v, m + 1, q,t);
+        int m = (p + q) >> 1, i, j;
+        mergesort(v, p, m, t);
+        mergesort(v, m + 1, q, t);
         vector<int> vb;
         int w = 0;
         for (i = p, j = m + 1; i <= m&&j <= q;){
@@ -30,9 +30,9 @@ public:
     }
     int InversePairs(vector<int> data) {
         if (data.size() == 0) return 0;
-        int ans = 0;
+        long long ans = 0;
         mergesort(data, 0, data.size() - 1, ans);
-        return ans;
+        return ans%1000000007;
     }
 };
 
