@@ -67,6 +67,35 @@ void readchar(int t){
 	}		
 }
 
+vector<vector<char>> readchar(){
+	vector<vector<char>> ipc;
+	int sca = 1;
+	while (1){
+		vector<char> vc;
+		char c;		
+		while (sca=scanf("%c", &c), sca!= EOF&&c != '\n'){
+			vc.push_back(c);
+		}
+		ipc.push_back(vc);
+		if (sca == EOF) break;
+	}
+	return ipc;
+}
+
+int main(){
+	freopen("t1.txt", "r", stdin);
+	//freopen("t11.txt", "w", stdout);
+
+	vector<vector<char>> ic=readchar();
+	for (vector<char> vc : ic){
+		for (char cc : vc){
+			cout << cc;
+		}
+		cout << endl;
+	}
+	return 0;
+}
+
 */
 
 
