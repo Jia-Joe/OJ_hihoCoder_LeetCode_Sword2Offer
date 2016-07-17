@@ -29,6 +29,46 @@ typedef map<uint,int> mip;
 typedef map<uint,int>::iterator mp;
 char s[30] = "\0";
 
+/*
+void readip(int t,int t2){
+	while (t--){
+		vector<int> v(5);
+		int asc = scanf("allow %d.%d.%d.%d/%d", &v[0], &v[1], &v[2], &v[3], &v[4]);
+		int dsc = scanf("deny %d.%d.%d.%d/%d", &v[0], &v[1], &v[2], &v[3], &v[4]);
+		if (asc == 4){
+			v[4] = 32;
+			ipv.push_back(v);
+		}
+		else if (asc == 5) ipv.push_back(v);
+
+		if (dsc == 4){
+			v[4] = 32;
+			ipv.push_back(v);
+		}
+		else if (dsc == 5) ipv.push_back(v);		
+		scanf("\n");
+
+	}
+	while (t2--){
+		vector<int> v(4);
+		scanf("%d.%d.%d.%d/n", &v[0], &v[1], &v[2], &v[3]);
+		ipv.push_back(v);
+	}
+}
+vector<vector<char>> ipc;
+void readchar(int t){
+	while (t--){
+		vector<char> vc;
+		char c;
+		while (scanf("%c", &c) != EOF&&c != '\n'){
+			vc.push_back(c);
+		}
+		ipc.push_back(vc);
+	}		
+}
+
+*/
+
 
 char readip(uint &ip)
 {
