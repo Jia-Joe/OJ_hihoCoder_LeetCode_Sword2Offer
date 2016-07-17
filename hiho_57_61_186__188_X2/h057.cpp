@@ -85,6 +85,9 @@ int main(){
 				cout << "Incorrect performance log" << endl; return 0;
 			}
 			else{
+				if (!legal(ts[ix.top()], ts[i])){
+					cout << "Incorrect performance log" << endl; return 0;
+				}
 				df[kx.top()] = dif(ts[i], ts[ix.top()]);
 				sk.pop(); ix.pop();	kx.pop();
 			}
