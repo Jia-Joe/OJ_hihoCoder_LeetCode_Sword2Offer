@@ -38,7 +38,7 @@ struct timesp{
 bool legal(timesp a, timesp b){
 	if (a.h != b.h) return a.h<b.h;
 	if (a.m != b.m) return a.m<b.m;
-	return a.se<=b.se;
+	return a.se <= b.se;
 }
 timesp dif(timesp b, timesp a){
 	int sa = a.h * 3600 + a.m * 60 + a.se;
@@ -60,26 +60,27 @@ int main(){
 	FOI(T){
 		scanf("%s %d:%d:%d ", s[i], &ts[i].h, &ts[i].m, &ts[i].se);
 		char c;
-		if (scanf("START%c", &c)) bg[i]=1;
-		if (scanf("END%c", &c)) bg[i] = 0;
+		if (scanf("STAR%c", &c)==1) bg[i] = 1;
+		if (scanf("EN%c", &c)==1) bg[i] = 0;
+		scanf("\n");
 	}
-	if (bg[0]==false){
+	if (bg[0] == false){
 		cout << "Incorrect performance log" << endl; return 0;
 	}
 	stack<char*> sk;
-	stack<int> ix,kx;
+	stack<int> ix, kx;
 	int k = 0;
 	for (int i = 0; i < T; ++i){
-		if (i != 0 && !legal(ts[i-1], ts[i])){
+		if (i != 0 && !legal(ts[i - 1], ts[i])){
 			cout << "Incorrect performance log" << endl; return 0;
 		}
 		if (bg[i] == true) {
-			sk.push(s[i]);	
+			sk.push(s[i]);
 			ix.push(i);
 			kx.push(k);
-			strcpy(r[k], s[i]);			
+			strcpy(r[k], s[i]);
 			++k;
-		}		
+		}
 		else {
 			if (strcmp(s[i], sk.top())) {
 				cout << "Incorrect performance log" << endl; return 0;
