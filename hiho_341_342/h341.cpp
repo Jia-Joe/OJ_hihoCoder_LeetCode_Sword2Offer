@@ -32,59 +32,81 @@ using namespace std;
 typedef unsigned int uint;
 typedef long long LL;
 
+struct Rule{
+	int x, y;
+	char a, b;
+	bool e1;
+	Rule(){
+		x = -1; y = -1; 
+		a = 0; b = 0; 
+		e1 = false; 
+	}
+};
+Rule ru[1009];
+vector<bool> ab(26,0);
 
-
+bool ok(map<int, int> &mp, Rule ru){
+	if (ru.a) ru.x = mp[ru.a]; 
+	if (ru.b) ru.y = mp[ru.b];
+	if (ru.e1)
+		return ru.x <= ru.y;
+	return ru.x < ru.y;
+}
 int main(){
 	freopen("t1.txt", "r", stdin);
 	//freopen("t11.txt", "w", stdout);
-	int N, K;
-	int x[6],xt;
-	char c[6],ct;
-	bool b[26],s[4];
-	FOI(26){
-		b[i] = 0;
-	}
+	int N, K=0, T, rn=0;
+	char ct;
 	cin >> N;
-	//int i = 0, j = 0, k = 0;
-	while (N--){
-		int i = 0, j = 0, k = 0;
-		if (scanf("%d<", &x[i])){ ++i; }
-		else{ scanf("%c<", &c[j]); j++; }
-		if (scanf("%d<", &xt)){
-			x[i++] = xt;
-			s[k++] = false;
+	for(int i=0;i<N;++i){
+		if (scanf("%d<", &ru[rn].x)){  }
+		else{ 
+			scanf("%c<", &ru[rn].a);
+			if (!ab[ru[rn].a - 'A']) { ab[ru[rn].a - 'A'] = 1; K++; }
 		}
-		else{
-			scanf("%c<", &ct);
-			if (ct == '='){
-				s[k++] = false;
+		while (1){
+			if (scanf("%d", &ru[rn].y)){
 			}
 			else{
-				c[j++] = ct;
-			}
-		}
-		if (scanf("%d", &xt)){
-			x[i++] = xt;
-			s[k++] = false;
-		}
-		else{
-			scanf("%c", &ct);
-			if (ct == '='){
-				s[k++] = false;
 				scanf("%c", &ct);
-				c[j++] = ct;
+				if (ct == '='){
+					ru[rn].e1 = 1;
+					if (scanf("%d", &ru[rn].y)){}
+					else{
+						scanf("%c", &ru[rn].b);	
+						if (!ab[ru[rn].b - 'A']) { ab[ru[rn].b - 'A'] = 1; K++; }
+					}
+				}
+				else{
+					ru[rn].b = ct;
+					if (!ab[ru[rn].b - 'A']) { ab[ru[rn].b - 'A'] = 1; K++; }
+				}			
 			}
-			else{
-				c[j++] = ct;
-			}
-		}
-		scanf("\n");
+			rn++;
+			if(scanf("%c",&ct),ct=='\n') break;
+			ru[rn].a = ru[rn - 1].b;
+			ru[rn].x = ru[rn - 1].y;
+		}				
 	}
-	cin >> K;
-	if (N>13)
-		cout << "NO" << endl;
-	else
-		cout << "YES" << endl;
+	scanf("%d\n", &T);
+	while (T--){
+		bool ret=1;
+		map<int, int> mp;
+		int xt;
+		FOI(K){
+			scanf("%c %d\n", &ct, &xt);
+			mp[ct] = xt;
+		}
+		FOI(rn){
+			if (!ok(mp, ru[i])){
+				ret = 0; break;
+			}				
+		}
+		if (ret)
+			cout << "YES" << endl;
+		else
+			cout << "NO" << endl;
+	}
 
 	return 0;
 }
