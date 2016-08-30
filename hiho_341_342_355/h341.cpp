@@ -37,30 +37,30 @@ struct Rule{
 	char a, b;
 	bool e1;
 	Rule(){
-		x = -1; y = -1; 
-		a = 0; b = 0; 
-		e1 = false; 
+		x = -1; y = -1;
+		a = 0; b = 0;
+		e1 = false;
 	}
 };
 Rule ru[1009];
-vector<bool> ab(26,0);
+vector<bool> ab(26, 0);
 
 bool ok(map<int, int> &mp, Rule ru){
-	if (ru.a) ru.x = mp[ru.a]; 
+	if (ru.a) ru.x = mp[ru.a];
 	if (ru.b) ru.y = mp[ru.b];
 	if (ru.e1)
 		return ru.x <= ru.y;
 	return ru.x < ru.y;
 }
 int main(){
-	freopen("t1.txt", "r", stdin);
+	//freopen("t1.txt", "r", stdin);
 	//freopen("t11.txt", "w", stdout);
-	int N, K=0, T, rn=0;
+	int N, K = 0, T, rn = 0;
 	char ct;
 	cin >> N;
-	for(int i=0;i<N;++i){
-		if (scanf("%d<", &ru[rn].x)){  }
-		else{ 
+	for (int i = 0; i<N; ++i){
+		if (scanf("%d<", &ru[rn].x)){}
+		else{
 			scanf("%c<", &ru[rn].a);
 			if (!ab[ru[rn].a - 'A']) { ab[ru[rn].a - 'A'] = 1; K++; }
 		}
@@ -73,24 +73,24 @@ int main(){
 					ru[rn].e1 = 1;
 					if (scanf("%d", &ru[rn].y)){}
 					else{
-						scanf("%c", &ru[rn].b);	
+						scanf("%c", &ru[rn].b);
 						if (!ab[ru[rn].b - 'A']) { ab[ru[rn].b - 'A'] = 1; K++; }
 					}
 				}
 				else{
 					ru[rn].b = ct;
 					if (!ab[ru[rn].b - 'A']) { ab[ru[rn].b - 'A'] = 1; K++; }
-				}			
+				}
 			}
 			rn++;
-			if(scanf("%c",&ct),ct=='\n') break;
+			if (scanf("%c", &ct), ct == '\n') break;
 			ru[rn].a = ru[rn - 1].b;
 			ru[rn].x = ru[rn - 1].y;
-		}				
+		}
 	}
 	scanf("%d\n", &T);
 	while (T--){
-		bool ret=1;
+		bool ret = 1;
 		map<int, int> mp;
 		int xt;
 		FOI(K){
@@ -100,12 +100,12 @@ int main(){
 		FOI(rn){
 			if (!ok(mp, ru[i])){
 				ret = 0; break;
-			}				
+			}
 		}
 		if (ret)
-			cout << "YES" << endl;
+			cout << "Yes" << endl;
 		else
-			cout << "NO" << endl;
+			cout << "No" << endl;
 	}
 
 	return 0;
