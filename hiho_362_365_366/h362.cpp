@@ -1,3 +1,5 @@
+//Binary search is better!
+
 #pragma once
 #include <vector>
 #include <string>
