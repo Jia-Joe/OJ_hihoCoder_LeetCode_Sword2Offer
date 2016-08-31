@@ -20,3 +20,4 @@ MergeSort 35
 DFS tree 38
 Finite Automata Machine 53
 Indexed PQ 54
+Dijkstra 354
