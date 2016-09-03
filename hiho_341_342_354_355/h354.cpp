@@ -29,10 +29,11 @@ using namespace std;
 #define KA 32
 #define QA 12
 #define mkp(A,B) make_pair((A),(B))
+#define pa pair<int, int>
 #define fi first 
 #define se second 
 
-#define pa pair<int, int>
+
 typedef unsigned int uint;
 typedef long long LL;
 const int dx[4] = { 1, 0, -1, 0 }, dy[4] = { 0, -1, 0, 1 };
@@ -98,7 +99,7 @@ void dijkstra2(int x, int y){
 		Edge er = pq.top();
 		int dr = er.dis, xr = er.x, yr = er.y;
 		pq.pop();
-		if (dr != dis[yr][xr]) continue;
+		//if (dr != dis[yr][xr]) continue;
 		FOI(4){
 			int xn = xr + dx[i], yn = yr + dy[i];
 			if (ok2(xn, yn)){
