@@ -64,3 +64,27 @@ public:
     	return ret;
     }
 };
+
+C(n,k) //123
+#include<cstdio>
+#define MAXN 111
+using namespace std;
+int tmp[MAXN], n, k;
+void dfs(int idx, int cnt, int k){
+	if (k > n){
+		printf("the input data is invalid!!!\n");
+		return;
+	}
+	if (cnt == k){
+		for (int i = 0; i < cnt; i++) printf("%d ", tmp[i]);
+		printf("\n");
+	}
+	for (int i = idx; i <= n; i++){
+		tmp[cnt] = i;
+		dfs(i + 1, cnt + 1, k);
+	}
+}
+int main(){
+	while (~scanf("%d%d", &n, &k)) dfs(1, 0, k);
+	return 0;
+}
