@@ -21,3 +21,19 @@ public:
         return res;
     }
 };
+
+//int lengthOfLIS(vector<int>& nums) {
+//	int sz = nums.size(),re=0;
+//	if (!sz) return 0;
+//	vector<int> v(sz, 1);
+//	for (int i = 1; i < sz; i++){
+//		for (int j = 0; j < i; j++){
+//			if (nums[i]>nums[j] && v[i] < v[j] + 1)
+//				v[i] = v[j] + 1;
+//		}
+//	}
+//	for (int i = 0; i < sz; i++){
+//		if (re < v[i]) re = v[i];
+//	}
+//	return re;
+//}
