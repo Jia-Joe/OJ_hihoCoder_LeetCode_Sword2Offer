@@ -36,3 +36,27 @@ public:
     	return ok(root->right,prev);
     }
 };
+class Solution {
+public:
+    bool isValidBST(TreeNode* root) {
+        TreeNode* prev=NULL;
+    	ok(root,prev);
+    	return 1;
+    }
+   void ok(TreeNode* root,TreeNode* &prev){
+    	if(!root) return;
+    	
+    	if(root&&prev) cout<<"root:"<<root->val<<"   prev:"<<prev->val<<endl;
+    	else{
+    	    if(root)cout<<"root:"<<root->val<<endl;
+    	    if(prev)cout<<"prev:"<<prev->val<<endl;
+    	}
+    	if(!root->left&&!root->right) {prev=root; return;}
+    	prev=root;
+    	ok(root->left,prev);
+    	ok(root->right,prev);
+    
+    	
+    	return ;
+    }
+};
