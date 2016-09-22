@@ -1,5 +1,5 @@
 void findprev(TreeNode *root, TreeNode* &prev){
-	if (!root) return ;	
+	if (!root) return;	
 	findprev(root->left, prev);
 	if (root&&prev) cout << "root:" << root->val << "   prev:" << prev->val << endl;
 	else{
@@ -11,7 +11,7 @@ void findprev(TreeNode *root, TreeNode* &prev){
 }
 
 void findpn(TreeNode *root, TreeNode* &pn){
-	if (!root) return ;	
+	if (!root) return;	
 	findpn(root->left, pn);
 	if (root&&pn) cout << "root:" << root->val << "   pn:" << pn->val << endl;
 	else{

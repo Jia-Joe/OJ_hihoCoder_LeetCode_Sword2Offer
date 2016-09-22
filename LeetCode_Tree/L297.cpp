@@ -91,9 +91,7 @@ public:
     	while (!qu.empty()){
     		int sz = qu.size();
     		for (int k = 0; k < sz; k++){
-    			TreeNode *tr = qu.front();
-    			TreeNode **t = &tr;
-    			qu.pop();
+    			TreeNode **t = &qu.front();
     			if (ix + 1 < vz){
     				ix++;
     				if (v[ix] != INT_MAX){
@@ -108,6 +106,7 @@ public:
     					qu.push((*t)->right);
     				}					
     			}
+    			qu.pop();
     			if (ix >= vz-1) break;
     		}
     		if (ix >= vz-1) break;
